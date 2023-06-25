@@ -51,9 +51,9 @@ class ProgramsControllers{
       }
       
     async show(req, res) {
-        const { id } = req.params;
+        const user_id = req.user.id;
 
-        const programs = await knex("programs").select()
+        const programs = await knex("programs").where("user_id", user_id).select()
         
         return res.json(programs)
     }
